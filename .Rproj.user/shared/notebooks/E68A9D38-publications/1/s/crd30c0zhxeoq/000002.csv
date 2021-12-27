@@ -1,0 +1,4 @@
+"0","library(here)"
+"2","here() starts at /home/filippogambarota/Desktop/papermod
+"
+"0","bib <- threadr::read_bibtex(here(""static"", ""citations.bib""))"

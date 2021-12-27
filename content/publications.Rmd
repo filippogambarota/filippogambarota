@@ -1,0 +1,9 @@
+---
+title: ""
+draft: false
+csl: "../static/apa.csl"
+bibliography: "../static/citations.bib"
+nocite: '@*'
+---
+
+# Publications

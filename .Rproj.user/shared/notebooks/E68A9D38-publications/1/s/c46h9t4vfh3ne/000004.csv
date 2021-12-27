@@ -1,0 +1,27 @@
+"0","library(""knitcitations"")"
+"0","cleanbib()"
+"0","options(""citation_format"" = ""text"")"
+"0","read.bibtex(file = here(""static"", ""citations.bib""))"
+"1","[1] F. D. P. Cristaldi, F. Del Popolo Cristaldi, F. Gambarota, et al. “Does
+your past define you? The role of previous visual experience in subjective
+reactions to new affective pictures and sounds”. 2021. DOI:
+10.31234/osf.io/z4mgh.
+
+[2] F. Gambarota, R. Luria, M. Pastore, et al. “Deficits of visual working
+memory representations of emotional facial expressions in patients with
+congenital facial palsy”. Jul. 2020. DOI: 10.31234/osf.io/nxe8z.
+
+[3] F. Gambarota and P. Sessa. “Visual Working Memory for Faces and Facial
+Expressions as a Useful ``Tool'' for Understanding Social and Affective
+Cognition”. En. In: _Front. Psychol._ 10.OCT (Oct. 2019), p. 2392. ISSN:
+1664-1078. DOI: 10.3389/fpsyg.2019.02392.
+
+[4] F. Gambarota, N. Tsuchiya, M. Pastore, et al. “Unconscious Visual
+Working Memory: a critical review and Bayesian meta-analysis”. Oct. 2021.
+DOI: 10.31234/osf.io/gt67h.
+
+[5] T. Quettier, F. Gambarota, N. Tsuchiya, et al. “Blocking facial mimicry
+during binocular rivalry modulates visual awareness of faces with a neutral
+expression”. En. In: _Sci. Rep._ 11.1 (May. 2021), p. 9972. ISSN: 2045-2322.
+DOI: 10.1038/s41598-021-89355-5.
+"
