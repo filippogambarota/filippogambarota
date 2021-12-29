@@ -26,22 +26,26 @@ params:
       url: "mailto:filippo.gambarota@gmail.com"
 menu:
     main:
+        - identifier: cv
+          name: Cv
+          url: https://filippogambarota.github.io/cv/ 
+          weight: 10
         - identifier: about
           name: About
           url: /about
-          weight: 10
+          weight: 20
         - identifier: posts
           name: Posts
           url: /post/
-          weight: 20
+          weight: 30
         - identifier: publications
           name: Publications
           url: /publications
-          weight: 30
+          weight: 40
         - identifier: coding
           name: Coding
           url: /coding/
-          weight: 40
+          weight: 50
         - identifier: tvshows
           name: TV-shows
           url: /tv-shows
