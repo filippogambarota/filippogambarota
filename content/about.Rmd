@@ -5,7 +5,7 @@ draft: false
 
 # Academic Life 📚
 
-- If you want to see my slides and talks [filippogambarota_slides](https://filippogambarota.github.io/filippogambarota_slides/)
+- If you want to see my slides and talks [filippogambarota/slides](https://filippogambarota.github.io/slides)
 - [ORCID](https://orcid.org/0000-0002-6666-1747) `r fontawesome::fa("orcid")`
 - [ResearchGate](https://www.researchgate.net/profile/Filippo-Gambarota) `r fontawesome::fa("researchgate")`
 - Check my [CV](https://filippogambarota.github.io/cv/)

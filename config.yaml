@@ -42,11 +42,15 @@ menu:
           name: Publications
           url: /publications
           weight: 40
+        - identifier: statnotes
+          name: Statistics
+          url: https://filippogambarota.github.io/StatNotes/
+          weight: 50
         - identifier: coding
           name: Coding
           url: /coding/
-          weight: 50
+          weight: 60
         - identifier: tvshows
           name: TV-shows
           url: /tv-shows
-          weight: 50
+          weight: 70
