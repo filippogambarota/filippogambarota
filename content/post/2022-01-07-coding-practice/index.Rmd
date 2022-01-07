@@ -1,0 +1,68 @@
+---
+title: Coding Best practices
+author: 'Filippo Gambarota'
+date: '2022-01-07'
+slug: []
+categories: [coding]
+tags: [coding]
+---
+
+As a beginner programmer, I'm always finding new way to improve my code (and procrastinate `r emo::ji("smile")`). Before starting to code in R and Python I thought that writing code was a tough but quite "standard" process, without many degrees of freedom. Totally wrong! Writing code is the same as writing prose. You can write code that works but ugly, difficult to understand and easy to break. For experienced programmer this is a quite trivial point, but for me is quite surprising and exiting.
+
+Naming objects and functions, organizing the script, using spaces and indentation. All of these stuff are not formalities but an essential part of a coding project. As [Hadley Wickham](https://style.tidyverse.org/) said:
+
+> Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.
+
+In this post I would like to share new coding tips and good practices that I've discovered and that I use in my everyday work. I mainly use R but most of them are quite applicable to all languages.
+
+## `invisibile(x)`
+
+*07/01/2022*
+
+Functions, especially within a functional programming paradigm, should always receive and input and return an output without modify in place a certain object. However, sometimes we need to write call or write a function only for the *side-effect*. For example writing or saving an object or printing some messages. A good practice is to **return the input object silently** so we can use it within a piping chain or later in the script. (see [@here](https://design.tidyverse.org/out-invisible.html))
+
+```{r, eval = FALSE}
+library(dplyr, warn.conflicts = FALSE)
+library(tibble)
+
+mtcars %>%
+  as_tibble() %>% 
+  filter(cyl == 6) %>% 
+  print() %>% # print an return the object so group_by() can use it
+  group_by(vs) %>% 
+  summarise(mpg = mean(mpg))
+```
+
+Sometimes I use `sapply` or `map` only for iterating and doing some side-effects (printing or saving). Then I've discovered [`purrr::walk()`](https://purrr.tidyverse.org/reference/map.html). Generally, using an `invisible(x)` statement at the end of the side-effect function can be useful.
+
+## camelCase vs snake_case
+
+Naming is a quite controversial topic. All people agree about the importance of having good naming practices but (almost) nobody agrees how to formally write good names. A good advice as always from Hadley and the tidyverse world is to use **noun** for objects and **verbs** for functions. In general I prefer the `snake_case` format (separating words with underscores) instead of using upper and lower case in the same function. Generally I avoid upper case letters or words at all.
+
+```{r eval = FALSE}
+fit_model <- function(...) # for me is good
+fitModel <- function(...) # don't like it
+```
+
+## Writing a lot of functions
+
+When I started coding I used to write scripts or ugly functions for doing a lot of operations. Then I forced myself to separate several operations in different functions. Now I write a lot (maybe too much `r emo::ji("smile")`) functions but my code is quite readable and the coding process is funnier and I learn much more. For example, I'm using a lot the `list.files()` function in these days for working with folders and files. What I want is basically to put several file extensions (like `.R`, `.Rmd`) and return all files within multiple sub-folders. I decided to write a `list_files()` function just as a wrapper in order to avoid putting the same *default* arguments multiple times and make the regex match easier to write:
+
+```{r, eval = FALSE}
+list_files <- function(path = ".",..., absolute = FALSE){
+  exts <- paste0(unlist(list(...)), collapse = "|")
+  regex <- sprintf("^.*\\.(%s)$", exts)
+  files <- list.files(path,
+                      recursive = TRUE,
+                      full.names = absolute,
+                      pattern = regex)
+  return(files)
+}
+
+list_files("R", "Rmd", "txt") # I can supply extension and return (in absolute or relative paths) all the files
+```
+
+# Resources
+
+- [Tidyverse design guide](https://design.tidyverse.org/)
+- [Tidyverse style guide](https://style.tidyverse.org/index.html)

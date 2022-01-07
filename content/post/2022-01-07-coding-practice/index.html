@@ -1,0 +1,61 @@
+---
+title: Coding Best practices
+author: 'Filippo Gambarota'
+date: '2022-01-07'
+slug: []
+categories: [coding]
+tags: [coding]
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>As a beginner programmer, I’m always finding new way to improve my code (and procrastinate 😄). Before starting to code in R and Python I thought that writing code was a tough but quite “standard” process, without many degrees of freedom. Totally wrong! Writing code is the same as writing prose. You can write code that works but ugly, difficult to understand and easy to break. For experienced programmer this is a quite trivial point, but for me is quite surprising and exiting.</p>
+<p>Naming objects and functions, organizing the script, using spaces and indentation. All of these stuff are not formalities but an essential part of a coding project. As <a href="https://style.tidyverse.org/">Hadley Wickham</a> said:</p>
+<blockquote>
+<p>Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.</p>
+</blockquote>
+<p>In this post I would like to share new coding tips and good practices that I’ve discovered and that I use in my everyday work. I mainly use R but most of them are quite applicable to all languages.</p>
+<div id="invisibilex" class="section level2">
+<h2><code>invisibile(x)</code></h2>
+<p><em>07/01/2022</em></p>
+<p>Functions, especially within a functional programming paradigm, should always receive and input and return an output without modify in place a certain object. However, sometimes we need to write call or write a function only for the <em>side-effect</em>. For example writing or saving an object or printing some messages. A good practice is to <strong>return the input object silently</strong> so we can use it within a piping chain or later in the script. (see <span class="citation">[@here]</span>(<a href="https://design.tidyverse.org/out-invisible.html" class="uri">https://design.tidyverse.org/out-invisible.html</a>))</p>
+<pre class="r"><code>library(dplyr, warn.conflicts = FALSE)
+library(tibble)
+
+mtcars %&gt;%
+  as_tibble() %&gt;% 
+  filter(cyl == 6) %&gt;% 
+  print() %&gt;% # print an return the object so group_by() can use it
+  group_by(vs) %&gt;% 
+  summarise(mpg = mean(mpg))</code></pre>
+<p>Sometimes I use <code>sapply</code> or <code>map</code> only for iterating and doing some side-effects (printing or saving). Then I’ve discovered <a href="https://purrr.tidyverse.org/reference/map.html"><code>purrr::walk()</code></a>. Generally, using an <code>invisible(x)</code> statement at the end of the side-effect function can be useful.</p>
+</div>
+<div id="camelcase-vs-snake_case" class="section level2">
+<h2>camelCase vs snake_case</h2>
+<p>Naming is a quite controversial topic. All people agree about the importance of having good naming practices but (almost) nobody agrees how to formally write good names. A good advice as always from Hadley and the tidyverse world is to use <strong>noun</strong> for objects and <strong>verbs</strong> for functions. In general I prefer the <code>snake_case</code> format (separating words with underscores) instead of using upper and lower case in the same function. Generally I avoid upper case letters or words at all.</p>
+<pre class="r"><code>fit_model &lt;- function(...) # for me is good
+fitModel &lt;- function(...) # don&#39;t like it</code></pre>
+</div>
+<div id="writing-a-lot-of-functions" class="section level2">
+<h2>Writing a lot of functions</h2>
+<p>When I started coding I used to write scripts or ugly functions for doing a lot of operations. Then I forced myself to separate several operations in different functions. Now I write a lot (maybe too much 😄) functions but my code is quite readable and the coding process is funnier and I learn much more. For example, I’m using a lot the <code>list.files()</code> function in these days for working with folders and files. What I want is basically to put several file extensions (like <code>.R</code>, <code>.Rmd</code>) and return all files within multiple sub-folders. I decided to write a <code>list_files()</code> function just as a wrapper in order to avoid putting the same <em>default</em> arguments multiple times and make the regex match easier to write:</p>
+<pre class="r"><code>list_files &lt;- function(path = &quot;.&quot;,..., absolute = FALSE){
+  exts &lt;- paste0(unlist(list(...)), collapse = &quot;|&quot;)
+  regex &lt;- sprintf(&quot;^.*\\.(%s)$&quot;, exts)
+  files &lt;- list.files(path,
+                      recursive = TRUE,
+                      full.names = absolute,
+                      pattern = regex)
+  return(files)
+}
+
+list_files(&quot;R&quot;, &quot;Rmd&quot;, &quot;txt&quot;) # I can supply extension and return (in absolute or relative paths) all the files</code></pre>
+</div>
+<div id="resources" class="section level1">
+<h1>Resources</h1>
+<ul>
+<li><a href="https://design.tidyverse.org/">Tidyverse design guide</a></li>
+<li><a href="https://style.tidyverse.org/index.html">Tidyverse style guide</a></li>
+</ul>
+</div>
