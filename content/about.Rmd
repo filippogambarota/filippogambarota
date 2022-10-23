@@ -16,6 +16,7 @@ I'm trying to declutter social media (without a great success Tbh 😵) however 
 
 - [Twitter](https://twitter.com/fgambarota) `r fontawesome::fa("twitter")`
 - [Instagram](https://www.instagram.com/filippogambarota/) `r fontawesome::fa("instagram")`
+- I'm a TV-Shows addicted 😵! Check my [**Trakt**](https://trakt.tv/users/filippo-gambarota) profile
 
 <a class="twitter-timeline" data-width="500" data-height="400" href="https://twitter.com/fgambarota?ref_src=twsrc%5Etfw">Tweets by fgambarota</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

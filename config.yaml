@@ -50,7 +50,3 @@ menu:
           name: Coding
           url: /coding/
           weight: 60
-        - identifier: tvshows
-          name: TV-shows
-          url: /tv-shows
-          weight: 70
